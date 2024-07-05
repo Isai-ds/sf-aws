@@ -46,14 +46,16 @@ class AWSSQS {
     messageAttributeNames: ['All'],
     waitTimeSeconds: 20,
     visibilityTimeout: 20,
-  }) => {    
-    setInterval(async () => {
-      const messages = await this.getMessage(sqsQueueUrl, config);
+  }) => {
 
-      if (messages.Messages){
-        messages.Messages.map((message) => callback(message));
-      }  
-    }, config.waitTimeSeconds * 1000);
+    setTimeout(async () => {
+      while  (true) {
+        const messages = await this.getMessage(sqsQueueUrl, config);
+        if (messages.Messages){
+          messages.Messages.map((message) => callback(message));
+        }
+      }        
+    });
   }
 }
 

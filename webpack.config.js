@@ -23,11 +23,11 @@ module.exports = [
             path: path.join(__dirname, "dist/browser/aws-provider/"),
             filename: 'aws-provider.js',
             libraryTarget: 'var',
-            library: 'AWSProvider'
+            library: 'AWSProvider',
         },
         // Enable WebPack to use the 'path' package.
         resolve:{
             fallback: { path: require.resolve("path-browserify")}
-        }
+        },
     }
 ];
